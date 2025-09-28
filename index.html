@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人主页</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2575fc;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2575fc;
+        }
+        
+        /* 内容区域 */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2rem;
+            color: #2575fc;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* 技能部分 */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: #2575fc;
+            margin-bottom: 15px;
+        }
+        
+        /* 项目部分 */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: #6a11cb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        /* 联系部分 */
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #2575fc;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #1a68e8;
+        }
+        
+        /* 底部 */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #2575fc;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .about-content,
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <img src="https://via.placeholder.com/150" alt="个人头像" class="profile-img">
+            <h1>你的名字</h1>
+            <p class="tagline">网页开发者 | 设计师 | 创意思考者</p>
+        </div>
+    </header>
+    
+    <!-- 导航 -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">个人品牌</div>
+            <ul class="nav-links">
+                <li><a href="#about">关于我</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 关于我部分 -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>你好！我是一名充满热情的网页开发者，专注于创建美观且功能强大的网站和应用程序。我相信好的设计能够提升用户体验，而优秀的技术实现则确保产品的可靠性和性能。</p>
+                    <p>在过去的几年中，我参与了多个项目，从简单的企业网站到复杂的Web应用程序。我喜欢学习新技术，并不断挑战自己以提升技能。</p>
+                    <p>当我不在编码时，我喜欢阅读、旅行和摄影，这些爱好帮助我保持创造力和灵感。</p>
+                </div>
+                <div class="about-img">
+                    <img src="https://via.placeholder.com/500x300" alt="关于我图片">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 技能部分 -->
+    <section id="skills" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2 class="section-title">我的技能</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3>前端开发</h3>
+                    <p>HTML, CSS, JavaScript, React, Vue.js</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🔧</div>
+                    <h3>后端开发</h3>
+                    <p>Node.js, Python, PHP, MySQL, MongoDB</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX 设计</h3>
+                    <p>Figma, Adobe XD, 用户体验设计</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h3>移动开发</h3>
+                    <p>React Native, Flutter, 响应式设计</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 项目部分 -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">我的项目</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-img">项目一</div>
+                    <div class="project-content">
+                        <h3>电子商务网站</h3>
+                        <p>一个完整的在线购物平台，包含用户认证、产品展示、购物车和支付功能。</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">查看详情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">项目二</div>
+                    <div class="project-content">
+                        <h3>任务管理应用</h3>
+                        <p>一个直观的任务管理工具，帮助用户组织工作和提高生产力。</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">查看详情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">项目三</div>
+                    <div class="project-content">
+                        <h3>个人博客平台</h3>
+                        <p>一个响应式博客平台，支持Markdown编辑和社交分享功能。</p>
+                        <a href="#" class="btn" style="margin-top: 15px;">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系部分 -->
+    <section id="contact" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>获取联系</h3>
+                    <p>如果你有任何问题或合作机会，请随时联系我。我很乐意与你交流！</p>
+                    <p>📧 email@example.com</p>
+                    <p>📱 +86 18068843466</p>
+                    <p>📍 中国，北京</p>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">消息</label>
+                            <textarea id="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 底部 -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">微博</a>
+                <a href="#">知乎</a>
+            </div>
+            <p>&copy; 2023 你的名字. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>
